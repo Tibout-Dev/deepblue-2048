@@ -1,0 +1,295 @@
+body {
+    color: #1b2735;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(ellipse at center, #1b2735 0%, #090a0f 100%);
+    font-size: 18px;
+    margin-top: 40px;
+    animation: pulse 10s ease infinite;
+    background-size: 200% 175%;
+}
+
+@keyframes pulse {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+p {
+    line-height: 1.50;
+}
+
+.noticeme {
+    font-weight: bold;
+    font-size: 22px;
+    color: #edc850;
+    text-transform: uppercase;
+}
+
+.score {
+    text-align: center;
+    padding: 10px;
+    font-size: 24px;
+    border-radius: 3px;
+    background-color: white;
+    float: right;
+}
+
+button {
+    border: 2px solid white;
+    font-size: 18px;
+    border-radius: 3px;
+    background-color: white;
+    padding: 11.5px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+button:hover {
+    color: white;
+    border: 2px solid white;
+    background-color: #1b2735;
+    transition-duration: 0.4s;
+}
+
+.explanation {
+    margin: 20px;
+    color: white;
+}
+
+/* Affichage de la grille du jeu basée sur le design original */
+
+.container {
+	width: 500px;
+	margin: 0 auto;
+}
+
+.game {
+    position: relative;
+    padding: 15px;
+    width: 500px;
+    height: 500px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    /* box-shadow: 10px 10px 10px white; */
+}
+
+.grid {
+	position: absolute;
+    z-index: 1;
+}
+
+.row {
+    margin-bottom: 15px;
+}
+.row:last-child {
+	margin-bottom: 0;
+}
+
+.row::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.cell {
+	width: 106.25px;
+	height: 106.25px;
+	margin-right: 15px;
+	float: left;
+    background: rgba(238, 228, 218, 0.35);
+    border-radius: 5px;
+}
+
+.cell:last-child {
+    margin-right: 0;
+}
+
+.tiles {
+	position: absolute;
+	z-index: 2;
+}
+
+.tile {
+    position: absolute;
+    transition: 100ms ease-in-out;
+    transition-property: transform;
+}
+
+.tile, .tile .tile-inner {
+    width: 107px;
+    height: 107px;
+    line-height: 107px;
+}
+
+.tile .tile-inner {
+	background: #eee4da;
+	text-align: center;
+	font-weight: bold;
+	z-index: 10;
+    font-size: 35px;
+    color: #1b2735;
+    border-radius: 5px;
+}
+
+.tile-new .tile-inner {
+    animation: appear 200ms ease 100ms;
+    animation-fill-mode: backwards;
+}
+
+@keyframes appear {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+}
+
+.loose, .win {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(27, 39, 53, 0.80);
+	z-index: 100;
+	padding-top: 25px;
+    text-align: center;
+    border-radius: 3px;
+    margin: 15px;
+}
+
+.loose p, .win p {
+	font-size: 60px;
+	font-weight: bold;
+	height: 60px;
+	line-height: 60px;
+    margin-top: 175px;
+    color: white;
+}
+
+/* Gestion des positions disponibles */
+
+.tile.tile-position-1-1 {
+    transform: translate(0px, 0px);
+}
+
+.tile.tile-position-1-2 {
+    transform: translate(0px, 121px);
+}
+
+.tile.tile-position-1-3 {
+    transform: translate(0px, 242px);
+}
+
+.tile.tile-position-1-4 {
+    transform: translate(0px, 363px);
+}
+
+.tile.tile-position-2-1 {
+    transform: translate(121px, 0px);
+}
+
+.tile.tile-position-2-2 {
+    transform: translate(121px, 121px);
+}
+
+.tile.tile-position-2-3 {
+    transform: translate(121px, 242px);
+}
+
+.tile.tile-position-2-4 {
+    transform: translate(121px, 363px);
+}
+
+.tile.tile-position-3-1 {
+    transform: translate(242px, 0px);
+}
+
+.tile.tile-position-3-2 {
+    transform: translate(242px, 121px);
+}
+
+.tile.tile-position-3-3 {
+    transform: translate(242px, 242px);
+}
+
+.tile.tile-position-3-4 {
+    transform: translate(242px, 363px);
+}
+
+.tile.tile-position-4-1 {
+    transform: translate(363px, 0px);
+}
+
+.tile.tile-position-4-2 {
+    transform: translate(363px, 121px);
+}
+
+.tile.tile-position-4-3 {
+    transform: translate(363px, 242px);
+}
+
+.tile.tile-position-4-4 {
+    transform: translate(363px, 363px);
+}
+
+/* Différentes propriétés selon la valeur de la tuile */
+
+.tile.tile-2 .tile-inner {
+    background: #eee4da;
+
+}
+
+.tile.tile-4 .tile-inner {
+    background: #ede0c8;
+}
+
+.tile.tile-8 .tile-inner {
+    color: #f9f6f2;
+    background: #f2b179;
+}
+
+.tile.tile-16 .tile-inner {
+    color: #f9f6f2;
+    background: #f59563;
+}
+
+.tile.tile-32 .tile-inner {
+    color: #f9f6f2;
+    background: #f67c5f;
+}
+
+.tile.tile-64 .tile-inner {
+    color: #f9f6f2;
+    background: #f65e3b;
+}
+
+.tile.tile-128 .tile-inner {
+    color: #f9f6f2;
+    background: #edcf72;
+}
+
+.tile.tile-256 .tile-inner {
+    color: #f9f6f2;
+    background: #edcc61;
+}
+
+.tile.tile-512 .tile-inner {
+    color: #f9f6f2;
+    background: #edc850;
+}
+
+  .tile.tile-1024 .tile-inner {
+    color: #f9f6f2;
+    background: #edc53f;
+    font-size: 30px;
+}
+
+  .tile.tile-2048 .tile-inner {
+    color: #f9f6f2;
+    background: #edc22e;
+    font-size: 30px;
+}
